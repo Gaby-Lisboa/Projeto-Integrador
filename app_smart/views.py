@@ -42,7 +42,7 @@ def upload_csv_view(request):
                             mac_address=row['mac_address'] if row['mac_address'] else None
                         )
                     except KeyError as e:
-                        print(f"Chave não encontrada: {e} na linha: {row}")  # Exibe o erro e a linha problemática
+                        print(f"Chave não encontrada: {e} na linha: {row}")  
                 
 
     else:
