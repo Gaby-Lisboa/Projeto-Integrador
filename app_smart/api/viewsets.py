@@ -3,7 +3,7 @@ from rest_framework import generics, permissions
 from app_smart.api import serializers # app_smart é o app criado.
 from rest_framework.response import Response
 from rest_framework import status
-from ..models import Sensor, TemperaturaData, UmidadeData, LuminosidadeData # o .. é para voltar dois níveis para encontrar o arquivo models.py
+from ..models import Sensor, TemperaturaData, UmidadeData, LuminosidadeData, ContadorData # o .. é para voltar dois níveis para encontrar o arquivo models.py
 from rest_framework import viewsets
 from app_smart.api.filters import SensorFilter, TemperaturaDataFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -40,3 +40,9 @@ class LuminosidadeDataViewSet(viewsets.ModelViewSet):
     queryset = LuminosidadeData.objects.all()
     serializer_class = serializers.LuminosidadeDataSerializer
     #permission_classes = [permissions.IsAuthenticated]
+
+class ContadorDataViewSet(viewsets.ModelViewSet):
+    queryset = ContadorData.objects.all()
+    serializer_class = serializers.ContadorDataSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+        
