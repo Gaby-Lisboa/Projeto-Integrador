@@ -118,13 +118,21 @@
     <div class="form-container">
         <h1>Upload de Arquivos CSV</h1>
 
+        {% if message %}
+            <div style="margin-bottom: 20px; color: #28a745;">
+                <script>
+                    alert("{{ message }}");
+                </script>
+            </div>
+        {% endif %}
+
         <div class="form-section">
             <h2>Upload de Sensores</h2>
             <form method="POST" enctype="multipart/form-data" action="{% url 'upload_sensores' %}">
                 {% csrf_token %}
                 <div class="file-upload">
-                    <label for="file_sensores">Escolha o arquivo de Sensores</label>
-                    <input type="file" id="file_sensores" name="file" accept=".csv" required>
+                    <label for="file_sensores" id="label_sensores">Escolha o arquivo de Sensores</label>
+                    <input type="file" id="file_sensores" name="file" accept=".csv" required onchange="updateLabel('file_sensores', 'label_sensores');">
                 </div>
                 <button type="submit">Enviar Sensores</button>
             </form>
@@ -135,8 +143,8 @@
             <form method="POST" enctype="multipart/form-data" action="{% url 'upload_contador' %}">
                 {% csrf_token %}
                 <div class="file-upload">
-                    <label for="file_contador">Escolha o arquivo de Contador</label>
-                    <input type="file" id="file_contador" name="file" accept=".csv" required>
+                    <label for="file_contador" id="label_contador">Escolha o arquivo de Contador</label>
+                    <input type="file" id="file_contador" name="file" accept=".csv" required onchange="updateLabel('file_contador', 'label_contador');">
                 </div>
                 <button type="submit">Enviar Contador</button>
             </form>
@@ -147,8 +155,8 @@
             <form method="POST" enctype="multipart/form-data" action="{% url 'upload_luminosidade' %}">
                 {% csrf_token %}
                 <div class="file-upload">
-                    <label for="file_luminosidade">Escolha o arquivo de Luminosidade</label>
-                    <input type="file" id="file_luminosidade" name="file" accept=".csv" required>
+                    <label for="file_luminosidade" id="label_luminosidade">Escolha o arquivo de Luminosidade</label>
+                    <input type="file" id="file_luminosidade" name="file" accept=".csv" required onchange="updateLabel('file_luminosidade', 'label_luminosidade');">
                 </div>
                 <button type="submit">Enviar Luminosidade</button>
             </form>
@@ -159,8 +167,8 @@
             <form method="POST" enctype="multipart/form-data" action="{% url 'upload_temperatura' %}">
                 {% csrf_token %}
                 <div class="file-upload">
-                    <label for="file_temperatura">Escolha o arquivo de Temperatura</label>
-                    <input type="file" id="file_temperatura" name="file" accept=".csv" required>
+                    <label for="file_temperatura" id="label_temperatura">Escolha o arquivo de Temperatura</label>
+                    <input type="file" id="file_temperatura" name="file" accept=".csv" required onchange="updateLabel('file_temperatura', 'label_temperatura');">
                 </div>
                 <button type="submit">Enviar Temperatura</button>
             </form>
@@ -171,12 +179,24 @@
             <form method="POST" enctype="multipart/form-data" action="{% url 'upload_umidade' %}">
                 {% csrf_token %}
                 <div class="file-upload">
-                    <label for="file_umidade">Escolha o arquivo de Umidade</label>
-                    <input type="file" id="file_umidade" name="file" accept=".csv" required>
+                    <label for="file_umidade" id="label_umidade">Escolha o arquivo de Umidade</label>
+                    <input type="file" id="file_umidade" name="file" accept=".csv" required onchange="updateLabel('file_umidade', 'label_umidade');">
                 </div>
                 <button type="submit">Enviar Umidade</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function updateLabel(fileInputId, labelId) {
+            const fileInput = document.getElementById(fileInputId);
+            const label = document.getElementById(labelId);
+            if (fileInput.files.length > 0) {
+                label.textContent = `Arquivo selecionado: ${fileInput.files[0].name}`;
+            } else {
+                label.textContent = `Escolha um arquivo`;
+            }
+        }
+    </script>
 </body>
 </html>

@@ -23,7 +23,6 @@ class Sensor(models.Model):
     def __str__(self):
         return f"{self.tipo} - {self.localizacao}"
 
-# Model para armazenar os dados de temperatura
 class TemperaturaData(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     valor = models.FloatField() # Valor da temperatura em graus Celsius
@@ -31,7 +30,6 @@ class TemperaturaData(models.Model):
     def __str__(self):
         return f"Temperatura: {self.valor} °C - {self.timestamp}"
 
-# Model para armazenar os dados de umidade
 class UmidadeData(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     valor = models.FloatField() # Valor da umidade relativa em %
@@ -39,14 +37,12 @@ class UmidadeData(models.Model):
     def __str__(self):
         return f"Umidade: {self.valor}% - {self.timestamp}"
 
-# Model para armazenar os dados do contador
 class ContadorData(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True) # Momento da leitura
     def __str__(self):
         return f"Contagem - {self.timestamp}"
 
-# Model para armazenar os dados de luminosidade
 class LuminosidadeData(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     valor = models.FloatField() # Valor da luminosidade em Lux
